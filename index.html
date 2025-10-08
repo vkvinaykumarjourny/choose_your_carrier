@@ -1,261 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial=scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Choose your Carrier</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#f6f7fb;
-      --panel:#343238;
+      --panel:#2d2a30;
       --muted:#bdb8bf;
       --accent:#ffcc00;
-      --white: #ffffff;
-      --shadow: 0 40px 60px rgba(0,0,0,0.25);
+      --white:#ffffff;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#ffffff)}/* container to mimic the floating dark panel */
-.wrap{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:60px 24px;
-  position:relative;overflow:hidden;
-}
-
-/* decorative yellow shapes */
-.wrap::before, .wrap::after{
-  content:"";position:absolute;left:50%;transform:translateX(-50%);width:900px;height:320px;border-radius:50%;background:linear-gradient(180deg,#ffd300,#f2b400);opacity:0.15;z-index:0;filter:blur(10px);
-}
-.wrap::before{top:-180px}
-.wrap::after{bottom:-220px;height:260px;opacity:0.08}
-
-.panel{
-  width:min(1150px,96%);background:linear-gradient(180deg,#38343a,#2d2a30);border-radius:14px;padding:54px 64px;color:var(--white);box-shadow:var(--shadow);position:relative;z-index:2;
-}
-
-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand .logo{width:14px;height:14px;border-radius:50%;background:var(--white);opacity:0.9}
-.brand span{font-weight:600;font-size:14px;opacity:0.9}
-
-nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;color:var(--muted);font-size:15px}
-nav ul li{cursor:pointer}
-.search{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,0.06);display:grid;place-items:center;background:transparent}
-
-/* Hero area */
-.hero{display:flex;gap:28px;align-items:flex-start}
-.left{flex:1}
-h1{font-size:88px;margin:0;line-height:0.9;font-weight:800;letter-spacing:-1px}
-p.lead{color:var(--muted);margin:18px 0 28px;font-size:16px}
-
-.cta{display:flex;gap:18px}
-.btn{padding:12px 24px;border-radius:28px;border:2px solid rgba(255,255,255,0.12);background:transparent;color:var(--white);cursor:pointer;font-weight:600}
-.btn.primary{background:linear-gradient(180deg,var(--accent),#f0b200);color:#222;box-shadow:0 12px 28px rgba(255,204,0,0.18)}
-
-/* dotted decorative grids */
-.dots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
-.dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.06);display:inline-block}
-
-/* right column social icons */
-.side-social{position:absolute;right:30px;top:120px;display:flex;flex-direction:column;gap:22px}
-.social-icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,0.06);opacity:0.9}
-
-/* cards row */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px;align-items:end}
-.card{background:transparent;padding:12px 18px;border-radius:10px;color:var(--muted);font-size:14px}
-.card h4{color:var(--white);font-weight:700;margin:6px 0}
-.card .price{color:var(--accent);font-weight:700}
-.card .small{font-size:13px;color:var(--muted);margin-top:6px}
-.card .card-cta{margin-top:12px;display:flex;gap:10px;align-items:center}
-.card .outline{padding:8px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);background:transparent}
-.card .join{padding:8px 14px;border-radius:20px;background:linear-gradient(180deg,var(--accent),#f0b200);color:#222;font-weight:700}
-
-/* carousel dots */
-.pager{display:flex;gap:10px;justify-content:center;margin-top:30px}
-.pager .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.08)}
-.pager .dot.active{background:var(--white)}
-
-/* responsive */
-@media (max-width:980px){
-  h1{font-size:56px}
-  .cards{grid-template-columns:repeat(1,1fr)}
-  .side-social{display:none}
-}
-@media (max-width:560px){
-  .panel{padding:28px}
-  h1{font-size:40px}
-}
-#searchBox {
-      padding: 8px;
-      width: 250px;
-      font-size: 16px;
-    }
-    #searchBtn {
-      padding: 8px 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-     .result {
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      background: #f9f9f9;
-      display: none;
-    }
-    .result h3 {
-      margin: 0;
-    }
-    .result a {
-      text-decoration: none;
-      color: blue;
-    }
-    .result a:hover {
-      text-decoration: underline;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{
+      height:100%;
+      font-family:Inter,system-ui,Arial,sans-serif;
+      background:var(--panel);
+      color:var(--white);
     }
 
+    /* full-page dark panel */
+    .panel{
+      width:100%;
+      height:100%;
+      background:var(--panel);
+      color:var(--white);
+      padding:40px 60px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:30px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .brand .logo{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background:var(--white);
+      opacity:0.9;
+    }
+    .brand span{
+      font-weight:600;
+      font-size:14px;
+      opacity:0.9;
+    }
+
+    nav ul{
+      display:flex;
+      gap:22px;
+      list-style:none;
+      color:var(--muted);
+      font-size:15px;
+    }
+    nav ul li{cursor:pointer}
+    .search{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,0.1);
+      display:grid;
+      place-items:center;
+      background:transparent;
+    }
+
+    /* Hero */
+    .hero{
+      display:flex;
+      flex:1;
+      align-items:flex-start;
+      gap:40px;
+    }
+    .left{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    h1{
+      font-size:70px;
+      line-height:0.9;
+      font-weight:800;
+      letter-spacing:-1px;
+      margin-bottom:20px;
+    }
+    p.lead{
+      color:var(--muted);
+      margin-bottom:28px;
+      font-size:18px;
+    }
+
+    .search-container{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+    }
+    #searchBox{
+      padding:10px;
+      width:260px;
+      font-size:16px;
+      border-radius:6px;
+      border:none;
+      outline:none;
+    }
+    #searchBtn{
+      padding:10px 16px;
+      font-size:16px;
+      border:none;
+      border-radius:6px;
+      background:var(--accent);
+      color:#222;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:28px;
+      margin-top:60px;
+    }
+    .card{
+      padding:20px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.05);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .card h4{
+      color:var(--white);
+      font-weight:700;
+      margin:6px 0;
+    }
+    .card .small{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+    }
+    .join{
+      padding:8px 14px;
+      border-radius:20px;
+      background:linear-gradient(180deg,var(--accent),#f0b200);
+      color:#222;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+    }
+
+    /* Responsive */
+    @media (max-width:980px){
+      h1{font-size:50px}
+      .cards{grid-template-columns:1fr}
+    }
   </style>
 </head>
-<script>
-  const places = {
-    "pes collage of engineering": {
-      description: "Click here to know more about PES College of Engineering, Mandya.",
-      link: "pesdetails.html",
-    },
-
-   };
-  const searchBox = document.getElementById("searchBox");
-  const resultBox = document.getElementById("resultBox");
-
-  searchBox.addEventListener("input", function() {
-    let query = searchBox.value.trim().toLowerCase();
-    if (query) {
-      let matchKey = Object.keys(places).find(place => place.includes(query));
-      if (matchKey) {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `
-          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
-          <p>${places[matchKey].description}</p>
-        `;
-      } else {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
-      }
-    } else {
-      resultBox.style.display = "none";
-      resultBox.innerHTML = "";
-    }
-  });
-</script>
-
 
 <body>
-  <div class="wrap">
-    <div class="panel">
-      <header>
-        <div class="brand"><div class="logo"></div><span>Title of site</span></div>
-        <div style="display:flex;align-items:center;gap:18px">
-          <nav>
-            <ul>
-              <li>Home</li>
-              <li>Explore</li>
-              <li>About Us</li>
-              <li>Contact Us</li>
-            </ul>
-          </nav>
-          <div class="search">🔍</div>
-        </div>
-      </header><section class="hero">
-    <div class="left">
-      <div style="display:flex;gap:24px;align-items:center">
-        <div style="width:110px"></div>
-        <div>
-          <h1>Choose your Carrier.</h1>
-          <p class="lead">choose right <strong style="color:var(--accent)">Collage.</strong>select best collage for your bright future.</p>
-
-           <div class="search-container">
-    <input type="text" id="searchBox" placeholder="Search collages...">
-<button id="searchBtn">Search</button>
-</div>
-
-        </div>
+  <div class="panel">
+    <header>
+      <div class="brand">
+        <div class="logo"></div>
+        <span>Title of site</span>
       </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>Explore</li>
+            <li>About Us</li>
+            <li>Contact Us</li>
+          </ul>
+        </nav>
+        <div class="search">🔍</div>
+      </div>
+    </header>
 
-      <div class="cards">
-        <div class="card">
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div style="display:flex;align-items:center;gap:10px">VTU</span><div style="font-size:13px;color:var(--muted)">Belagaum</div></div>
-          </div>
-          <h4>PES collage of Engineering</h4>
-          <div class="small">Mandya</div>
-          <div class="card-cta">
-        <button class="join">
-            <a href="pesdetails.html" style="text-decoration:none;color:inherit;">visit</a>
-        </button>
-          </div>
+    <section class="hero">
+      <div class="left">
+        <h1>Choose your Carrier.</h1>
+        <p class="lead">Choose the right <strong style="color:var(--accent)">college</strong> for your bright future.</p>
+        <div class="search-container">
+          <input type="text" id="searchBox" placeholder="Search colleges...">
+          <button id="searchBtn">Search</button>
         </div>
 
-        <div class="card">
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div style="display:flex;align-items:center;gap:10px"><span>VTU</span><div style="font-size:13px;color:var(--muted)">Belagum</div></div>
+        <div class="cards">
+          <div class="card">
+            <h4>PES College of Engineering</h4>
+            <div class="small">Mandya</div>
+            <button class="join">
+              <a href="pesdetails.html" style="text-decoration:none;color:inherit;">Visit</a>
+            </button>
+          </div>
 
+          <div class="card">
+            <h4>Cauvery Institute of Technology</h4>
+            <div class="small">Mandya</div>
+            <button class="join">Visit</button>
           </div>
-          <h4>Cauvery Institute of Technology</h4>
-          <div class="small">Mandya</div>
-          <div class="card-cta">
-           
-            <button class="join">visit</button>
-          </div>
-        </div>
 
-        <div class="card">
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div style="display:flex;align-items:center;gap:10px"><span>VTU</span><div style="font-size:13px;color:var(--muted)">Belagum</div></div>
-            
-          </div>
-          <h4>National Institute of Engineering</h4>
-          <div class="small">Mysore</div>
-          <div class="card-cta">
-            
-            <button class="join">visit</button>
+          <div class="card">
+            <h4>National Institute of Engineering</h4>
+            <div class="small">Mysore</div>
+            <button class="join">Visit</button>
           </div>
         </div>
       </div>
-   </div>
-
-    <!-- decorative right area (dotted grids) -->
-    <div style="width:300px;display:flex;flex-direction:column;align-items:center;gap:24px">
-      <div class="dots" style="margin-left:30px">
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span>
-      
-      </div>
-      <div style="height:60px"></div>
-    </div>
-  </section>
-
-  <!-- vertical social icons on the right -->
-  <div class="side-social">
-    <div class="social-icon">Insta</div>
-    <div class="social-icon">Faceb</div>
-    <div class="social-icon">Twit</div>
+    </section>
   </div>
 
-</div>
+  <script>
+    const places = {
+      "pes college of engineering": {
+        description: "Click here to know more about PES College of Engineering, Mandya.",
+        link: "pesdetails.html",
+      },
+    };
 
-  </div>  <script>
-    // small interactive touches
-    document.querySelectorAll('.btn, .outline, .join').forEach(b=>{
-      b.addEventListener('mouseenter',()=>b.style.transform='translateY(-3px)')
-      b.addEventListener('mouseleave',()=>b.style.transform='translateY(0)')
-    })
+    const searchBox = document.getElementById("searchBox");
+    const searchBtn = document.getElementById("searchBtn");
 
-    // pager click
-    document.querySelectorAll('.pager .dot').forEach((d,i)=>{
-      d.addEventListener('click',()=>{
-        document.querySelectorAll('.pager .dot').forEach(x=>x.classList.remove('active'));
-        d.classList.add('active');
-      })
-    })
-  </script></body>
-
+    searchBtn.addEventListener("click", () => {
+      const query = searchBox.value.trim().toLowerCase();
+      if (places[query]) {
+        window.location.href = places[query].link;
+      } else {
+        alert("No details found for: " + query);
+      }
+    });
+  </script>
+</body>
 </html>
