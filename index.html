@@ -48,12 +48,16 @@
       width: 100%;
       top: 0;
       background-color: white;
+      border-radius: 20px 20px 20px 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
     }
     .brand {
       display: flex;
       align-items: left;
       gap: 8px;
       margin-bottom: 12px;
+      color: black;
     }
 
     .brand .logo {
@@ -138,12 +142,14 @@
 
     /* Cards stacked vertically */
     .cards {
-      display: flex;
-      flex-direction: rows;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       width: 25%;
       max-width: 350px;
       margin-bottom: 40px;
+      text-align: center;
+      justify-content: center;
     }
 
     .card {
@@ -256,6 +262,40 @@
       background-color: #d4edda;
       color: gray;
     }
+       .search-container{
+      text-align: right;
+      
+    }
+    #searchBox {
+      padding: 8px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #searchBtn {
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100px;
+    }
+
+    .result {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid black;
+      background: skyblue;
+      display: none;
+    }
+    .result h3 {
+      margin: 0;
+    }
+    .result a {
+      text-decoration: none;
+      color: green;
+    }
+    .result a:hover {
+      text-decoration: none;
+    }
+   
 
     
   </style>
@@ -296,18 +336,66 @@
       <a href="districts.html">Explore us</a>
     </div>
       </header>
-  
-
-    <section class="hero">
+       <section class="hero">
       <h1>Choose your Career.</h1>
       <p class="lead">Choose the right <strong style="color:var(--accent)">college</strong> for your bright future.</p>
+    </section>
 
-    <div class="search-container">
-    <input type="text" id="searchBox" placeholder="Search places...">
+
+       <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search colleges...">
 <button id="searchBtn">Search</button>
 </div>
 <div class="result" id="resultBox"></div>
-<h1>Top collages in karnataka</h1>
+
+<script>
+  const places = {
+    "pes collage of engineering": {
+      description: "Click here to khow more about PES college of engineering",
+      link: "pesdetails.html"
+    },
+    "cauvery institute of technology": {
+      description: "Click here to khow more about Cauvery institute of technology",
+      link: "citdetails.html"
+    },
+    "malnad collage of engineering": {
+      description: "Click here to khow more about Malnad college of engineering",
+      link: "malnaddetails.html"  
+    },
+    "rns institute of technology": {
+      description: "Click here to khow more about RNS institute of technology",
+      link: "rnsdetails.html"    
+    } 
+     };
+  const searchBox = document.getElementById("searchBox");
+  const resultBox = document.getElementById("resultBox");
+
+  searchBox.addEventListener("input", function() {
+    let query = searchBox.value.trim().toLowerCase();
+    if (query) {
+      let matchKey = Object.keys(places).find(place => place.includes(query));
+      if (matchKey) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `
+          <h3><a href="${places[matchKey].link}">${matchKey.toUpperCase()}</a></h3>
+          <p>${places[matchKey].description}</p>
+        `;
+      } else {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<p>No details found for: ${query}</p>";
+      }
+    } else {
+      resultBox.style.display = "none";
+      resultBox.innerHTML = "";
+    }
+  });
+</script>
+
+  
+
+   
+   
+<h1>Top colleges in karnataka</h1>
 
       <div class="cards">
         <div class="card">
@@ -321,31 +409,23 @@
         <div class="card">
           <h4>Cauvery Institute of Technology</h4>
           <div class="small">Mandya</div>
-          <button class="join">Visit</button>
+          <button class="join">
+            <a href="citdetails.html">Visit</a>
+            </button>
         </div>
 
-      
-
-  <script>
-    const places = {
-      "pes college of engineering": {
-        description: "Click here to know more about PES College of Engineering, Mandya.",
-        link: "pesdetails.html",
-      },
-    };
-
-    const searchBox = document.getElementById("searchBox");
-    const searchBtn = document.getElementById("searchBtn");
-
-    searchBtn.addEventListener("click", () => {
-      const query = searchBox.value.trim().toLowerCase();
-      if (places[query]) {
-        window.location.href = places[query].link;
-      } else {
-        alert("No details found for: " + query);
-      }
-    });
-  </script>
+           <div class="card">
+          <h4>Malnad College of Engineering</h4>
+          <div class="small">Hassan</div>
+          <button class="join">
+            <a href="mcetdetails.html">Visit</a>
+            </button>
+        </div>
+            <div class="card">
+            <h4>RNS Institute of Technology</h4>
+            <div class="small">Bengaluru</div>
+            <button class="join">
+              <a href="rnsdetails.html">Visit</a>
+              </button>
 </body>
 </html>
-
